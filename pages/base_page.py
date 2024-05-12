@@ -7,7 +7,6 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.common.action_chains import ActionChains
-from conftest import *
 
 
 class BasePage:

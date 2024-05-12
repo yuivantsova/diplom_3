@@ -11,7 +11,6 @@ class MainPage(BasePage):
     @allure.step('Нажать на кнопку Личный кабинет')
     def click_button_personal_area(self):
         self.click_virt_mouse(HeaderLocators.BUTTON_MY_ACCOUNT)
-        #self.click_element(HeaderLocators.BUTTON_MY_ACCOUNT)
 
     @allure.step('Нажать на кнопку Конструктор')
     def click_constructor_button(self):

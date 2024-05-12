@@ -1,7 +1,5 @@
 import time
-
 import allure
-from conftest import *
 
 
 class TestPersonalPage:

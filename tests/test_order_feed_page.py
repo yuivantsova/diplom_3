@@ -3,7 +3,6 @@ from locators.order_feed_page_locators import OrderFeedPageLocators
 import allure
 import pytest
 from data import *
-from conftest import *
 
 
 class TestOrderFeedPage:

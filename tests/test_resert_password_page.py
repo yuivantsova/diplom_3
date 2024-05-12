@@ -1,7 +1,6 @@
 import allure
 from data import *
 import pytest
-from conftest import *
 from pages.login_page import *
 from pages.recover_page import *
 

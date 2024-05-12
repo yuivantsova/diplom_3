@@ -1,6 +1,5 @@
 import allure
 from data import *
-from conftest import *
 
 
 class TestMainPage:
