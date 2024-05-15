@@ -26,7 +26,6 @@ class MainPage(BasePage):
 
     @allure.step('Заголовок вкладки Конструктор')
     def return_text_header_constructor(self):
-
         return self.get_text_to_element(MainPageLocators.HEADER_CONSTRUCTOR_PAGE)
 
     @allure.step('Нажать на ингредиент')

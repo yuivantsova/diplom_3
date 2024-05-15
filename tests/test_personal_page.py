@@ -1,5 +1,5 @@
-import time
 import allure
+import requests
 
 
 class TestPersonalPage:

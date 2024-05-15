@@ -22,7 +22,7 @@ def driver(request):
         options = webdriver.ChromeOptions()
         options.add_argument('--window-size=1920,1080')
         driver = webdriver.Chrome(options=options)
-    driver.get(MAIN_URL)
+    driver.get(Url.MAIN_URL)
     yield driver
     driver.quit()
 
@@ -59,6 +59,7 @@ def order_feed_page(driver):
 
 @pytest.fixture(scope='function')
 def create_test_user():
+
     data_user = {}
     email_and_password = {}
 
@@ -77,26 +78,24 @@ def create_test_user():
         "name": name
     }
 
-    response = requests.post('https://stellarburgers.nomoreparties.site/api/auth/register', data=payload, timeout=10)
+    response = requests.post(f'{Url.CREATE_USER_URL}', data=payload, timeout=10)
 
     email_and_password['email'] = payload['email']
     email_and_password['password'] = payload['password']
-    response_login = requests.post('https://stellarburgers.nomoreparties.site/api/auth/login',
-                              data=payload, timeout=10)
+    response_login = requests.post(f'{Url.LOGIN_USER}', data=payload, timeout=10)
     if response_login.status_code == 200:
         token = response_login.json()['accessToken']
         data_user['token'] = token
         data_user['email'] = payload['email']
         data_user['password'] = payload['password']
-
     yield data_user
-    requests.delete('https://stellarburgers.nomoreparties.site/api/auth/user', headers={'Authorization': token})
+    requests.delete(f'{Url.DELETE_USER}', headers={'Authorization': token})
 
 
 @pytest.fixture(scope='function')
 def create_test_order(create_test_user):
     order_payload = {"ingredients": '61c0c5a71d1f82001bdaaa6d'}
-    response = requests.post('https://stellarburgers.nomoreparties.site/api/orders',
+    response = requests.post(f'{Url.CREATE_ORDER}',
                              headers={'Authorization': create_test_user['token']}, data=order_payload, timeout=10)
     number = response.json()['order']['number']
     return str(number)
